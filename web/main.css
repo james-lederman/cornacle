@@ -1,0 +1,53 @@
+    body {
+      padding: 0;
+      margin: 0;
+      background: #f2f6e9;
+    }
+    /*--- navigation bar ---*/
+    .navbar {
+      background:#6ab446;
+    }
+    .nav-link,
+    .navbar-brand {
+      color: #ff0;
+      cursor: pointer;
+    }
+    .nav-link {
+      margin-right: 1em !important;
+    }
+    .nav-link:hover {
+      color: #000;
+    }
+    .navbar-collapse {
+      justify-content: flex-end;
+    }
+    .header {
+      background-image: url('img/corn_field.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .overlay {
+      position: absolute;
+      min-height: 25%;
+      min-width: 52%;
+      left: 24%;
+      top: 20%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .description {
+      left: 50%;
+      position: absolute;
+      top: 33%;
+      transform: translate(-50%, -55%);
+      text-align: center;
+    }
+    .description h1 {
+      color: #ff2;
+	  font-size: 4rem;
+    }
+    .description p {
+      color: #ff2;
+      font-size: 1.7rem;
+      line-height: 1.2;
+    }
