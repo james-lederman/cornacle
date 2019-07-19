@@ -1,11 +1,11 @@
     body {
       padding: 0;
       margin: 0;
-      background: #f2f6e9;
+      background: #999999;
     }
     /*--- navigation bar ---*/
     .navbar {
-      background:#6ab446;
+      background:#7ac460;
     }
     .nav-link,
     .navbar-brand {
@@ -27,27 +27,29 @@
       background-position: center;
       position: relative;
     }
-    .overlay {
+/*    .overlay {
       position: absolute;
-      min-height: 25%;
-      min-width: 52%;
-      left: 24%;
-      top: 20%;
-      background: rgba(0, 0, 0, 0.5);
+      min-height: 100%;
+      min-width: 100%;
+      left: 0;
+      top: 0;
+      background: rgba(0, 0, 0, 0.6);
     }
+*/
     .description {
       left: 50%;
       position: absolute;
-      top: 33%;
+      top: 35%;
       transform: translate(-50%, -55%);
       text-align: center;
     }
     .description h1 {
       color: #ff2;
-	  font-size: 4rem;
+	  font-size: 8rem;
+	  font-weight: bold;
     }
     .description p {
       color: #ff2;
-      font-size: 1.7rem;
+      font-size: 4rem;
       line-height: 1.2;
     }
