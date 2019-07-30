@@ -1,18 +1,30 @@
+import datetime
+import ee
+import numba as nb
+import numpy as np
+import pandas as pd
+import random
+import time
+
+from collections import Counter
+from tqdm import tnrange
+from tqdm import tqdm
+
+ee.Initialize()
+
 def timestamp_to_datetime(timestamp, time_format = '%Y-%m-%d'):
 	return datetime.datetime.fromtimestamp(timestamp/1000).strftime(time_format)
 
 def dates_available(geCollection):
-    """
-    Returns a list of the dates available for this collection.
-    geCollection: ee.ImageCollection object
-    Returns a list of date strings in YYYY-MM-DD format.
-	Author: https://github.com/jldowns
-    """
-		
+#     Returns a list of the dates available for this collection.
+#     geCollection: ee.ImageCollection object
+#     Returns a list of date strings in YYYY-MM-DD format.
+#     Author: https://github.com/jldowns
+
     timestamps =  geCollection.aggregate_array('system:time_start').getInfo()
     dateformat_array = [timestamp_to_datetime(t) for t in timestamps]
     return  dateformat_array
-	
+
 def available_bands(image_collection):
     """
     Returns a dictionary in format
