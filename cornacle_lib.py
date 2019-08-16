@@ -5,10 +5,12 @@ import numpy as np
 import pandas as pd
 import random
 import time
+import os
 
 from collections import Counter
 from tqdm import tnrange
 from tqdm import tqdm
+from os import listdir
 
 ee.Initialize()
 
@@ -194,26 +196,45 @@ def mask_img(img, mask):
         img[:, :, band] = img[:, :, band] * mask[:, :, :]
 		
 		
-def plt_img_dist(file_dir, nband, nsample, yield_dataframe):
-    import random
+# def plt_img_dist(file_dir, nband, nsample, yield_dataframe):
+#     #import random
+#     """
+#     Return data for plotting the distribution of the number in each band of a set of images in a folder.
+#     Image is in a form of npy format. 
+#     """
+    
+#     fips = yield_dataframe[['YEAR', 'STATE_FIPS', 'COUNTY_FIPS']][yield_dataframe['YEAR'] >= 2010].values
+#     rand_idx = random.sample(range(0, len(fips)), nsample)
+#     data = {band:[] for band in range(0, nband)}
+#     for i, _ in enumerate(tqdm(fips[rand_idx])):
+#         #file = random.choice(os.listdir("D://projectII_temp_data//MODIS_LAND"))
+#         try:
+#             test = np.load(file_dir + str(fips[i][0]) + '_' + str(fips[i][1]) + '_' + str(fips[i][2]) + '.npy')
+#             for band in range(nband):
+#                 data[band] = np.append(data[band], test[:, :, band].ravel())
+#                 data[band] = data[band][np.nonzero(data[band])]
+#         except: # In case it hits [51,131] or [46, 102]
+#             pass
+#     return data
+def plt_img_dist(path, nband, yield_dataframe):
+
     """
     Return data for plotting the distribution of the number in each band of a set of images in a folder.
     Image is in a form of npy format. 
     """
     
-    fips = yield_dataframe[['YEAR', 'STATE_FIPS', 'COUNTY_FIPS']][yield_dataframe['YEAR'] >= 2010].values
-    rand_idx = random.sample(range(0, len(fips)), nsample)
+    files = os.listdir(path)    
     data = {band:[] for band in range(0, nband)}
-    for i, _ in enumerate(tqdm(fips[rand_idx])):
-        #file = random.choice(os.listdir("D://projectII_temp_data//MODIS_LAND"))
+    for filename in files:
         try:
-            test = np.load(file_dir + str(fips[i][0]) + '_' + str(fips[i][1]) + '_' + str(fips[i][2]) + '.npy')
+            test = np.load(os.path.join(path, filename))
             for band in range(nband):
-                data[band] = np.append(data[band], test[:, :, band].ravel())
-                data[band] = data[band][np.nonzero(data[band])]
-        except: # In case it hits [51,131] or [46, 102]
+                    data[band] = np.append(data[band], test[:, :, band].ravel())
+                    data[band] = data[band][np.nonzero(data[band])]
+        except:
             pass
-    return data
+
+        return data
 	
 def get_stats(file_dir, nband, nsample, yield_dataframe):
     
